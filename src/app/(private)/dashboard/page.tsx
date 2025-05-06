@@ -32,7 +32,7 @@ ChartJS.register(
   Title
 );
 
-// Define period type to avoid TypeScript errors
+
 type PeriodType = 'week' | 'month' | 'year';
 type TabType = 'production' | 'defects' | 'load';
 
@@ -698,9 +698,27 @@ export default function DashboardPage() {
                     <h3>Всего станков</h3>
                   </div>
                   <p className={styles.statValue}>400</p>
-                  <div className={styles.statValue}>
-                    <Image src="/images/trend-up.svg" alt="trend" width={16} height={16} />
+                </div>
+                <div className={styles.stat}>
+                  <div className={styles.titlestat}>
+                    <Image src="/images/all2.svg" alt="machine" width={24} height={24} />
+                    <h3>Простаивает</h3>
                   </div>
+                  <p className={styles.statValue}>60</p>
+                </div>
+                <div className={styles.stat}>
+                  <div className={styles.titlestat}>
+                    <Image src="/images/all3.svg" alt="machine" width={24} height={24} />
+                    <h3>Аварии</h3>
+                  </div>
+                  <p className={styles.statValue}>80</p>
+                </div>
+                <div className={styles.stat}>
+                  <div className={styles.titlestat}>
+                    <Image src="/images/all4.svg" alt="machine" width={24} height={24} />
+                    <h3>% использования</h3>
+                  </div>
+                  <p className={styles.statValue}>85</p>
                 </div>
               </div>
             </article>
