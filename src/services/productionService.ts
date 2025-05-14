@@ -54,7 +54,7 @@ class ProductionService {
   
   async getProductionAnalytics(startDate?: string, endDate?: string): Promise<ProductionAnalytics> {
     try {
-      let url = '/production/analytics';
+      const url = '/production/analytics';
       const params: Record<string, string> = {};
       
       if (startDate) params.startDate = startDate;

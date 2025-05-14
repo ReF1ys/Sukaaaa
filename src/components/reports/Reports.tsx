@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Reports.module.css';
 import Image from 'next/image';
-import { Line, Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,9 +11,7 @@ import {
   LineElement,
   Tooltip,
   Legend,
-  Title,
-  Plugin,
-  Chart
+  Title
 } from 'chart.js';
 
 ChartJS.register(

@@ -631,7 +631,6 @@ export default function DashboardPage() {
               ctx.closePath();
               ctx.fill();
               
-              // Рисуем текст
               ctx.fillStyle = 'white';
               ctx.font = '16px Lato, sans-serif';
               ctx.textAlign = 'center';

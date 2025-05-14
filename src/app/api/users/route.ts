@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAuthToken, hasRole } from '@/lib/authUtils';
+import { hasRole } from '@/lib/authUtils';
 import { UserRole } from '@/types/auth';
 
 export async function GET(req: NextRequest) {

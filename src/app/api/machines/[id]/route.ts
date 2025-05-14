@@ -3,16 +3,19 @@ import { getAuthToken, hasRole } from '@/lib/authUtils';
 import { UserRole } from '@/types/auth';
 import { MachineUpdateDto } from '@/types/machine';
 
-interface Params {
+interface RequestContext {
   params: {
     id: string;
   };
 }
 
-export async function GET(req: NextRequest, { params }: Params) {
+export async function GET(
+  request: NextRequest,
+  context: RequestContext
+) {
   try {
-    const { id } = params;
-    const token = getAuthToken(req);
+    const { id } = context.params;
+    const token = getAuthToken(request);
     
     if (!token) {
       return NextResponse.json(
@@ -45,19 +48,21 @@ export async function GET(req: NextRequest, { params }: Params) {
   }
 }
 
-export async function PUT(req: NextRequest, { params }: Params) {
+export async function PUT(
+  request: NextRequest,
+  context: RequestContext
+) {
   try {
-    const { id } = params;
+    const { id } = context.params;
     
-
-    if (!hasRole(req, [UserRole.ADMIN, UserRole.OPERATOR])) {
+    if (!hasRole(request, [UserRole.ADMIN, UserRole.OPERATOR])) {
       return NextResponse.json(
         { message: 'Доступ запрещен' },
         { status: 403 }
       );
     }
     
-    const body: MachineUpdateDto = await req.json();
+    const body: MachineUpdateDto = await request.json();
     
     const mockUpdatedMachine = {
       id,
@@ -83,11 +88,14 @@ export async function PUT(req: NextRequest, { params }: Params) {
   }
 }
 
-export async function DELETE(req: NextRequest, { params }: Params) {
+export async function DELETE(
+  request: NextRequest,
+  context: RequestContext
+) {
   try {
-    const { id } = params;
+    const { id } = context.params;
     
-    if (!hasRole(req, [UserRole.ADMIN])) {
+    if (!hasRole(request, [UserRole.ADMIN])) {
       return NextResponse.json(
         { message: 'Доступ запрещен' },
         { status: 403 }

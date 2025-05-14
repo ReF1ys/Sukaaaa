@@ -94,7 +94,7 @@
 .statBox {
   background: #fff;
   border-radius: 8px;
-  padding: 20px;
+  padding: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
@@ -285,9 +285,9 @@
 
 .utilizationBar {
   flex: 1;
-  height: 20px;
-  background-color: #eee;
-  border-radius: 10px;
+  height: 16px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
   overflow: hidden;
   min-width: 0;
 }
@@ -295,7 +295,7 @@
 .utilizationFill {
   height: 100%;
   background: linear-gradient(to right, #6a33f8, #9d7efa);
-  border-radius: 10px;
+  border-radius: 8px;
   transition: width 0.3s ease;
 }
 
