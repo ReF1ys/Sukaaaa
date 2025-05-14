@@ -90,8 +90,8 @@ export default function Sidebar({ activePage, activeWorkshop, onPageChange }: Si
           </li>
           <li>
             <button 
-              className={`${styles.navItem} ${activePage === 'users' ? styles.active : ''}`}
-              onClick={() => handleNavClick('users')}
+              className={`${styles.navItem} ${activePage === 'reports' ? styles.active : ''}`}
+              onClick={() => handleNavClick('reports')}
             >
               <Image src="/Home/Icon/Отчеты.svg" alt="Отчеты" width={24} height={24} />
               <span>Отчеты</span> 

@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import styles from './page.module.css';
 import Sidebar from '@/components/sidebar/Sidebar';
 import WorkshopDashboard from '@/components/dashboard/WorkshopDashboard';
+import Reports from '@/components/reports/Reports';
 import { Bar, Line } from 'react-chartjs-2';
 import Image from 'next/image';
 import {
@@ -36,7 +37,7 @@ ChartJS.register(
 type PeriodType = 'week' | 'month' | 'year';
 type TabType = 'production' | 'defects' | 'load';
 
-// Define chart data interfaces
+
 interface ChartDataByPeriod {
   labels: string[];
   datasets: Array<{
@@ -56,7 +57,6 @@ export default function DashboardPage() {
   const [topChartPeriod, setTopChartPeriod] = useState<PeriodType>('month');
   const [activeTab, setActiveTab] = useState<TabType>('production');
 
-  // Workshop data - different data for each workshop
   const workshopData = {
     1: {
       stats: [
@@ -315,7 +315,7 @@ export default function DashboardPage() {
             {
               label: 'Рабочие станки',
               data: [250, 300, 320, 280, 290, 150, 100],
-              backgroundColor: 'rgba(255,255,255,1)',
+              backgroundColor: 'rgba(106, 131, 248, 0.7)',
               borderRadius: 4,
               categoryPercentage: 0.2,
               barThickness: 2,
@@ -324,26 +324,26 @@ export default function DashboardPage() {
         };
       case 'year':
         return {
-          labels: ['Янв', 'Апр', 'Июл', 'Окт', 'Янв', 'Апр', 'Июл', 'Окт', 'Янв', 'Апр'],
+          labels: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'],
           datasets: [
             {
               label: 'Рабочие станки',
               data: [700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150],
-              backgroundColor: 'rgba(255,255,255,1)',
+              backgroundColor: 'rgba(106, 131, 248, 0.7)',
               borderRadius: 4,
               categoryPercentage: 0.2,
               barThickness: 2,
             },
           ],
         };
-      default: // month
+      default: 
         return {
-          labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт'],
+          labels: ['Янв', 'Фев', '1Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт'],
           datasets: [
             {
-              label: 'Рабочие станки',
+              label: 'Часы работы',
               data: [900, 800, 1000, 1100, 700, 600, 1000, 1100, 700, 600],
-              backgroundColor: 'rgba(255,255,255,1)',
+              backgroundColor: 'rgba(106, 131, 248, 0.7)',
               borderRadius: 6,
               categoryPercentage: 0.2,
               barThickness: 6,
@@ -633,7 +633,7 @@ export default function DashboardPage() {
               
               // Рисуем текст
               ctx.fillStyle = 'white';
-              ctx.font = '12px Lato, sans-serif';
+              ctx.font = '16px Lato, sans-serif';
               ctx.textAlign = 'center';
               ctx.textBaseline = 'middle';
               ctx.fillText(`${value} ${activeTab === 'production' ? 'тыс.' : '%'}`, position.x, position.y - 20);
@@ -654,7 +654,7 @@ export default function DashboardPage() {
   // Rendering the main dashboard
   function renderMainDashboard() {
     return (
-      <>
+      <div className={styles.mainconteiner}>
         <header className={styles.header}>
           <h1 className={styles.title}>Дашборд</h1>
           <form className={styles.search} role="search">
@@ -688,6 +688,9 @@ export default function DashboardPage() {
                   <p className={styles.labelSmall}>Станков сейчас <br/>в работе</p>
                 </div>
                 <div className={styles.chart}>
+                  <h3 className={styles.chartTitle}>
+                    Отработано часов
+                  </h3>
                   <Bar data={getMachineDataByPeriod()} options={commonOpts} />
                 </div>
               </div>
@@ -847,7 +850,7 @@ export default function DashboardPage() {
             </section>
           </div>
         </section>
-      </>
+      </div>
     );
   }
 
@@ -865,6 +868,8 @@ export default function DashboardPage() {
             workshopId={activeWorkshop} 
             workshopData={workshopData[activeWorkshop as keyof typeof workshopData]}
           />
+        ) : activePage === 'reports' ? (
+          <Reports />
         ) : (
           renderMainDashboard()
         )}

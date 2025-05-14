@@ -4,9 +4,13 @@
   height: 100vh;
   font-family: 'Lato', sans-serif;
   background: #f7f8fa;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
+.mainconteiner{
+  max-width: 100%;
+  overflow-x: hidden;
+}
 .visuallyHidden {
   position: absolute;
   width: 1px;
@@ -21,11 +25,14 @@
 /* Sidebar */
 .sidebar {
   width: 240px;
+  min-width: 240px;
   background: #fff;
   display: flex;
   flex-direction: column;
   padding: 20px;
   box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+  height: 100vh;
+  overflow-y: auto;
 }
 .logo {
   font-size: 32px; 
@@ -91,12 +98,17 @@
   flex: 1;
   padding: 30px;
   overflow-y: auto;
+  overflow-x: hidden;
+  max-width: calc(100vw - 240px);
+  box-sizing: border-box;
 }
 .header {
   display: flex; 
   justify-content: space-between; 
   align-items: center;
   margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 .title {
   font-size: 24px; 
@@ -108,6 +120,7 @@
   padding: 8px 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  max-width: 100%;
 }
 
 /* Секции */
@@ -117,17 +130,23 @@
   grid-template-columns: 4fr 1fr;
   gap: 30px;
   margin-bottom: 20px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .mainContent {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .bottomSection {
   display: grid;
   grid-template-columns: 1fr;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Карточки */
@@ -138,12 +157,18 @@
   display: flex; 
   flex-direction: column;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
 }
 .cardHeader {
   display: flex; 
   justify-content: space-between; 
   align-items: center;
   margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
 }
 .cardHeader h2 {
   font-weight: 500;
@@ -154,6 +179,8 @@
 .controls, .tabs {
   display: flex; 
   align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 .controls select, .controls button {
   margin-left: 8px;
@@ -193,6 +220,10 @@
 
 .cardBody {
   display: flex; 
+  flex-wrap: wrap;
+  max-width: 100%;
+  width: 100%;
+  gap: 15px;
 }
 .currentCount {
   flex: 0 0 120px;
@@ -208,19 +239,27 @@
   color: #888;
   margin: 0;
 }
+.chartTitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: #3a3541;
+  margin-bottom: 10px;
+  text-align: center;
+}
 .chart {
   flex: 1;
   padding-left: 20px;
   height: 200px; 
   border-radius: 8px;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
-  background: linear-gradient(90deg, #c2a1fd 0%, #9154fd 100%);
+  min-width: 0;
 }
 
 .lineChart {
   width: 100%;
   height: 300px;
   margin-top: 20px;
+  box-sizing: border-box;
+  max-height: 300px;
 }
 
 /* Строка статистик */
@@ -229,6 +268,7 @@
   grid-template-columns: repeat(4, 1fr);
   margin-top: 70px;
   gap:14px;
+  width: 100%;
 }
 .stat {
   display: flex;
@@ -237,11 +277,14 @@
   border-radius: 0.5rem;
   padding: 0.75rem;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+  min-width: 0;
 }
 .stat h3 {
   font-weight: 500;
   font-size: 1rem;
   color: #3a3541;
+  white-space: normal;
+  word-break: break-word;
 }
 .statValue {
   margin: 4px 0 0 0;
@@ -254,6 +297,7 @@
   flex-direction: row;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 .progressBar {
   width: 100%;
@@ -310,7 +354,7 @@
   flex-direction: column; 
   gap: 30px;
   height: 100%;
-  width: 100%;
+  min-width: 0;
 }
 .cardSmall {
   background: #fff;
@@ -318,6 +362,7 @@
   padding: 30px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   text-align: center;
+  box-sizing: border-box;
 }
 .smallTitle {
   font-size: 14px; 
@@ -330,6 +375,7 @@
   font-weight: 700; 
   color: #6a33f8;
   margin: 8px 0;
+  word-break: break-word;
 }
 .btn {
   padding: 8px 12px;
@@ -338,6 +384,9 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  width: 100%;
+  max-width: 200px;
+  white-space: normal;
 }
 .reasonList {
   list-style: none; 
@@ -414,4 +463,251 @@
   font-size: 16px;
   color: #666;
   max-width: 500px;
+}
+
+@media (max-width: 1400px) {
+  .topSection {
+    grid-template-columns: 3fr 1fr;
+    gap: 20px;
+  }
+  
+  .statsRow {
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .statValue {
+    font-size: 2.5rem;
+  }
+  
+  .stat h3 {
+    font-size: 0.9rem;
+  }
+  
+  .cardLarge {
+    padding: 25px;
+  }
+}
+
+/* Адаптивные стили для разрешения 1280px */
+@media (max-width: 1280px) {
+  .main {
+    padding: 20px;
+  }
+  
+  .topSection {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .sideCards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .cardBody {
+    flex-direction: column;
+  }
+  
+  .chart {
+    padding-left: 0;
+    width: 100%;
+    height: 300px;
+    max-height: 300px;
+  }
+  
+  .lineChart {
+    height: 250px;
+    max-height: 250px;
+  }
+  
+  .currentCount {
+    margin-bottom: 20px;
+  }
+  
+  .number {
+    font-size: 36px;
+  }
+  
+  .cardLarge {
+    padding: 20px;
+  }
+  
+  .statsRow {
+    margin-top: 40px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Адаптивные стили для разрешения 1200px */
+@media (max-width: 1200px) {
+  .topSection {
+    grid-template-columns: 1fr;
+  }
+  
+  .sideCards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .statsRow {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .main {
+    padding: 20px;
+    max-width: calc(100vw - 240px);
+  }
+
+  .topSection {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .sideCards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cardLarge {
+    padding: 20px;
+  }
+
+  .tabs button {
+    margin-right: 8px;
+    font-size: 13px;
+  }
+
+  .statsRow {
+    flex-wrap: wrap;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat {
+    min-width: 140px;
+    flex: 1 0 40%;
+  }
+
+  .stat h3 {
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  .statValue {
+    font-size: 17px;
+  }
+
+  .number {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cardHeader h2 {
+    margin-bottom: 8px;
+  }
+
+  .controls {
+    width: 100%;
+  }
+
+  .cardBody {
+    flex-direction: column;
+  }
+
+  .currentCount {
+    margin-bottom: 16px;
+  }
+
+  .chart {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .lineChart {
+    height: 280px;
+  }
+  
+  .sidebar {
+    width: 200px;
+    min-width: 200px;
+  }
+  
+  .main {
+    max-width: calc(100vw - 200px);
+  }
+
+  .cardSmall {
+    padding: 15px;
+  }
+
+  .smallTitle {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+    min-width: 0;
+  }
+  
+  .main {
+    max-width: 100%;
+    padding: 15px;
+  }
+  
+  .sideCards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+  
+  .main {
+    max-width: 100%;
+    padding: 15px;
+  }
+  
+  .cardHeader {
+    gap: 10px;
+  }
+  
+  .tabs {
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 5px;
+  }
+  
+  .stat {
+    flex: 1 0 100%;
+  }
+  
+  .statsRow {
+    grid-template-columns: 1fr;
+  }
 }
